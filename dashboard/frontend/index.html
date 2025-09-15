@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bot Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Discord Bot Dashboard</h1>
+        <p class="status">Loading status...</p>
+    </div>
+    <script>
+        fetch('/api/status')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.status').textContent = data.status;
+            })
+            .catch(err => {
+                document.querySelector('.status').textContent = 'Failed to load status.';
+            });
+    </script>
+</body>
+</html>
