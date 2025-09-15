@@ -7,6 +7,5 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "dashboard/backend/index.js" },
     { "src": "/(.*)", "dest": "dashboard/frontend/public/$1" }
-  ],
-  "outputDirectory": "dashboard/frontend/public"
+  ]
 }

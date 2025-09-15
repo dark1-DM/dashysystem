@@ -7,6 +7,23 @@
 </head>
 <body>
     <h1>Welcome to the Admin Dashboard</h1>
-    <p>This is the main page for managing your server settings.</p>
+    <form id="bot-token-form">
+        <label for="token">Enter your bot token:</label>
+        <input type="text" id="token" name="token" required>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById('bot-token-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const token = document.getElementById('token').value;
+            const response = await fetch('/api/set-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token }),
+            });
+            const result = await response.json();
+            alert(result.status || result.error);
+        });
+    </script>
 </body>
 </html>

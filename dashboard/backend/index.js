@@ -7,8 +7,22 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware to parse JSON
+app.use(express.json());
+
 // Discord Bot Setup
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+let client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+app.post('/api/set-token', (req, res) => {
+    const { token } = req.body;
+    if (!token) {
+        return res.status(400).json({ error: 'Token is required' });
+    }
+    client = new Client({ intents: [GatewayIntentBits.Guilds] });
+    client.login(token)
+        .then(() => res.json({ status: 'Bot logged in successfully!' }))
+        .catch(err => res.status(500).json({ error: 'Failed to log in', details: err }));
+});
 
 client.once('ready', () => {
     console.log(`Bot logged in as ${client.user.tag}`);
