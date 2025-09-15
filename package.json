@@ -5,7 +5,7 @@
   "scripts": {
     "start:bot": "node bot/index.js",
     "start:dashboard": "node dashboard/backend/index.js",
-    "build": "mkdir -p dashboard/frontend/public && cp -r dashboard/frontend/src/* dashboard/frontend/public/"
+    "build": "mkdir -p dashboard/frontend/public && cp -r dashboard/frontend/index.html dashboard/frontend/public/"
   },
   "dependencies": {
     "discord.js": "^14.0.0",
